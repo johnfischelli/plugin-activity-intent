@@ -1,4 +1,5 @@
 import { FlexPlugin } from 'flex-plugin';
+import ActivityIntentReducer from './ActivityIntentReducer';
 
 const PLUGIN_NAME = 'ActivityIntentPlugin';
 
@@ -12,6 +13,8 @@ export default class ActivityIntentPlugin extends FlexPlugin {
    * @param manager { import('@twilio/flex-ui').Manager }
    */
   init(flex, manager) {
+
+    manager.store.addReducer("intendedActivity", ActivityIntentReducer);
 
     flex.Actions.addListener('beforeSetActivity', (payload, abort) => {
       let state = manager.store.getState();
